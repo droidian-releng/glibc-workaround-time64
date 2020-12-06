@@ -38,7 +38,7 @@ __clock_settime64 (clockid_t clock_id, const struct __timespec64 *tp)
   int ret = INLINE_SYSCALL_CALL (clock_settime64, clock_id, tp);
 
 #ifndef __ASSUME_TIME64_SYSCALLS
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 
   if (! in_time_t_range (tp->tv_sec))

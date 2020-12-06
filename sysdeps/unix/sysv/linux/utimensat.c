@@ -48,7 +48,7 @@ __utimensat64_helper (int fd, const char *file,
     {
       int r = INLINE_SYSCALL_CALL (utimensat_time64, fd, file, &tsp64[0],
 				   flags);
-      if (r == 0 || errno != ENOSYS)
+      if (r == 0 || ! (errno == ENOSYS || errno == EPERM))
 	return r;
       __set_errno (EOVERFLOW);
       return -1;
