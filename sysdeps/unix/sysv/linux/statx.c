@@ -29,7 +29,7 @@ statx (int fd, const char *path, int flags,
 #ifdef __ASSUME_STATX
   return ret;
 #else
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     /* Preserve non-error/non-ENOSYS return values.  */
     return ret;
   else

@@ -52,7 +52,7 @@ __clock_nanosleep_time64 (clockid_t clock_id, int flags,
     {
       r = INTERNAL_SYSCALL_CANCEL (clock_nanosleep_time64, clock_id, flags,
 				   req, rem);
-      if (r == -ENOSYS)
+      if (r == -ENOSYS || r == -EPERM)
 	r = -EOVERFLOW;
     }
   else

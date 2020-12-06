@@ -49,7 +49,7 @@ __ppoll64 (struct pollfd *fds, nfds_t nfds, const struct __timespec64 *timeout,
     {
       ret = SYSCALL_CANCEL (ppoll_time64, fds, nfds, timeout, sigmask,
 			    __NSIG_BYTES);
-      if (ret == 0 || errno != ENOSYS)
+      if (ret == 0  || ! (errno == ENOSYS || errno == EPERM))
 	return ret;
       __set_errno (EOVERFLOW);
       return -1;

@@ -68,7 +68,7 @@ __clock_gettime64 (clockid_t clock_id, struct __timespec64 *tp)
   r = INTERNAL_SYSCALL_CALL (clock_gettime64, clock_id, tp);
   if (r == 0)
     return 0;
-  if (r != -ENOSYS)
+  if (r != -ENOSYS && r != -EPERM)
     return INLINE_SYSCALL_ERROR_RETURN_VALUE (-r);
 
 #ifndef __ASSUME_TIME64_SYSCALLS
