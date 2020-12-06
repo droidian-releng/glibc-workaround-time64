@@ -36,7 +36,7 @@ __utimensat64_helper (int fd, const char *file,
 #else
 # ifdef __NR_utimensat_time64
   int ret = INLINE_SYSCALL (utimensat_time64, 4, fd, file, &tsp64[0], flags);
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 # endif
   if (tsp64
