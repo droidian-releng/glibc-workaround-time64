@@ -52,7 +52,7 @@ __clock_nanosleep_time64 (clockid_t clock_id, int flags, const struct __timespec
 
   if (! INTERNAL_SYSCALL_ERROR_P (r))
     return 0;
-  if (INTERNAL_SYSCALL_ERRNO (r) != ENOSYS)
+  if (! (INTERNAL_SYSCALL_ERRNO (r) == ENOSYS || INTERNAL_SYSCALL_ERRNO (r) == EPERM))
     return INTERNAL_SYSCALL_ERRNO (r);
 # endif /* __NR_clock_nanosleep_time64 */
 
