@@ -40,7 +40,7 @@ __clock_settime64 (clockid_t clock_id, const struct __timespec64 *tp)
 #else
 # ifdef __NR_clock_settime64
   int ret = INLINE_SYSCALL_CALL (clock_settime64, clock_id, tp);
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 # endif
   if (! in_time_t_range (tp->tv_sec))

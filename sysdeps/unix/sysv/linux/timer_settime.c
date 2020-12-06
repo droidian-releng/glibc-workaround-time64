@@ -40,7 +40,7 @@ __timer_settime64 (timer_t timerid, int flags,
 # ifdef __NR_timer_settime64
   int ret = INLINE_SYSCALL_CALL (timer_settime64, kt->ktimerid, flags, value,
                                  ovalue);
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 # endif
   struct itimerspec its32, oits32;

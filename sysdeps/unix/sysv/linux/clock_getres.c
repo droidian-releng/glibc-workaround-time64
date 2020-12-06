@@ -52,7 +52,7 @@ __clock_getres64 (clockid_t clock_id, struct __timespec64 *res)
 #  else
       r = INLINE_SYSCALL_CALL (clock_getres_time64, clock_id, res);
 #  endif
-      if (r == 0 || errno != ENOSYS)
+      if (r == 0 || ! (errno == ENOSYS || errno == EPERM))
 	return r;
 
       atomic_store_relaxed (&time64_support, 0);
