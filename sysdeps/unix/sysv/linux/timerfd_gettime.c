@@ -33,7 +33,7 @@ __timerfd_gettime64 (int fd, struct __itimerspec64 *value)
 #else
 # ifdef __NR_timerfd_gettime64
   int ret = INLINE_SYSCALL_CALL (timerfd_gettime64, fd, value);
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 # endif
   struct itimerspec its32;
