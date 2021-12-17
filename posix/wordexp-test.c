@@ -1,4 +1,4 @@
-/* Copyright (C) 1997-2020 Free Software Foundation, Inc.
+/* Copyright (C) 1997-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -183,6 +183,7 @@ struct test_case_struct
     { 0, NULL, "$var", 0, 0, { NULL, }, IFS },
     { 0, NULL, "\"\\n\"", 0, 1, { "\\n", }, IFS },
     { 0, NULL, "", 0, 0, { NULL, }, IFS },
+    { 0, NULL, "${1234567890123456789012}", 0, 0, { NULL, }, IFS },
 
     /* Flags not already covered (testit() has special handling for these) */
     { 0, NULL, "one two", WRDE_DOOFFS, 2, { "one", "two", }, IFS },

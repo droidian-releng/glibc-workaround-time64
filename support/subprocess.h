@@ -1,5 +1,5 @@
 /* Create a subprocess.
-   Copyright (C) 2019-2020 Free Software Foundation, Inc.
+   Copyright (C) 2019-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -36,6 +36,11 @@ struct support_subprocess support_subprocess
 /* Issue FILE with ARGV arguments by using posix_spawn and return is PID, a
    pipe redirected to STDOUT, and a pipe redirected to STDERR.  */
 struct support_subprocess support_subprogram
+  (const char *file, char *const argv[]);
+
+/* Invoke program FILE with ARGV arguments by using posix_spawn and wait for it
+   to complete.  Return program exit status.  */
+int support_subprogram_wait
   (const char *file, char *const argv[]);
 
 /* Wait for the subprocess indicated by PROC::PID.  Return the status

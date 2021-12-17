@@ -1,5 +1,5 @@
 /* Capture output from a subprocess.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
+   Copyright (C) 2017-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -40,6 +40,12 @@ struct support_capture_subprocess support_capture_subprocess
    are handle as support_capture_subprocess.  */
 struct support_capture_subprocess support_capture_subprogram
   (const char *file, char *const argv[]);
+
+/* Copy the running program into a setgid binary and run it with CHILD_ID
+   argument.  If execution is successful, return the exit status of the child
+   program, otherwise return a non-zero failure exit code.  */
+int support_capture_subprogram_self_sgid
+  (char *child_id);
 
 /* Deallocate the subprocess data captured by
    support_capture_subprocess.  */
