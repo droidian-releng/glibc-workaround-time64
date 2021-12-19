@@ -79,7 +79,7 @@ __futex_abstimed_wait_common64 (unsigned int* futex_word,
                                  abstime, NULL /* Ununsed.  */,
                                  FUTEX_BITSET_MATCH_ANY);
 #ifndef __ASSUME_TIME64_SYSCALLS
-  if (err == -ENOSYS)
+  if (err == -ENOSYS || err == -EPERM)
     err = __futex_abstimed_wait_common32 (futex_word, expected, op, abstime,
                                           private, cancel);
 #endif
