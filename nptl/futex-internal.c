@@ -92,7 +92,7 @@ __futex_abstimed_wait_common (unsigned int* futex_word,
     {
       err = __futex_abstimed_wait_common64 (futex_word, expected, op, abstime,
 					    private, cancel);
-      if (err == -ENOSYS)
+      if (err == -ENOSYS || err == -EPERM)
 	err = -EOVERFLOW;
     }
   else
