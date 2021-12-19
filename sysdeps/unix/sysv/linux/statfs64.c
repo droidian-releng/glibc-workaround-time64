@@ -52,7 +52,7 @@ __statfs64 (const char *file, struct statfs64 *buf)
       int result = INLINE_SYSCALL (statfs64, 3, file, sizeof (*buf), buf);
 
 # if __ASSUME_STATFS64 == 0
-      if (result == 0 || errno != ENOSYS)
+      if (result == 0 || ! (errno == ENOSYS || errno == EPERM))
 # endif
 	return result;
 

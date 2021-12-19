@@ -46,7 +46,7 @@ __fstatat64_time64 (int fd, const char *file, struct __stat64_t64 *buf,
       __cp_stat64_t64_statx (buf, &tmp);
       return 0;
     }
-  if (-r != ENOSYS)
+  if (-r != ENOSYS && -r != EPERM)
     return INLINE_SYSCALL_ERROR_RETURN_VALUE (-r);
 #endif
 

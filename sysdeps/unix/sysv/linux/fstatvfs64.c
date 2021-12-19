@@ -31,7 +31,7 @@ __fstatvfs64 (int fd, struct statvfs64 *buf)
   int res = __fstatfs64 (fd, &fsbuf);
 
 #ifndef __ASSUME_STATFS64
-  if (res < 0 && errno == ENOSYS)
+  if (res < 0 && (errno == ENOSYS || errno == EPERM))
     {
       struct statvfs buf32;
 

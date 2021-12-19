@@ -50,7 +50,7 @@ __fstatfs64 (int fd, struct statfs64 *buf)
       int result = INLINE_SYSCALL (fstatfs64, 3, fd, sizeof (*buf), buf);
 
 # if __ASSUME_STATFS64 == 0
-      if (result == 0 || errno != ENOSYS)
+      if (result == 0 || ! (errno == ENOSYS || errno == EPERM))
 # endif
 	return result;
 
