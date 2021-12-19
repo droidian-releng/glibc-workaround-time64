@@ -30,7 +30,7 @@ __faccessat (int fd, const char *file, int mode, int flag)
 #if __ASSUME_FACCESSAT2
   return ret;
 #else
-  if (ret == 0 || errno != ENOSYS)
+  if (ret == 0 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 
   if (flag & ~(AT_SYMLINK_NOFOLLOW | AT_EACCESS))
