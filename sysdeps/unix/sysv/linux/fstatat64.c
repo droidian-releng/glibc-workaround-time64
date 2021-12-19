@@ -156,7 +156,7 @@ __fstatat64_time64 (int fd, const char *file, struct __stat64_t64 *buf,
 #if FSTATAT_USE_STATX
   r = fstatat64_time64_statx (fd, file, buf, flag);
 # ifndef __ASSUME_STATX
-  if (r == -ENOSYS)
+  if (r == -ENOSYS || r == -EPERM)  
     r = fstatat64_time64_stat (fd, file, buf, flag);
 # endif
 #else
