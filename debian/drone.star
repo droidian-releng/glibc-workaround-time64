@@ -8,6 +8,8 @@
 # Following architectures buildds will be used only for arch-dep builds.
 BUILD_ON = [
 	"armhf",
+	"amd64",
+	"arm64",
 ]
 
 # Extra Debian repositories to add. These can be used to pull packages
