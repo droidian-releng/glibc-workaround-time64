@@ -74,7 +74,7 @@ __select64 (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
          (though the pselect() glibc call suppresses this behavior).
          Since select() on Linux has the same behavior as the pselect6
          syscall, we update the timeout here.  */
-      if (r >= 0 || errno != ENOSYS)
+      if (r >= 0 || ! (errno == ENOSYS || errno == EPERM))
 	{
 	  if (timeout != NULL)
 	    TIMESPEC_TO_TIMEVAL (timeout, &ts64);
