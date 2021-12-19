@@ -148,6 +148,9 @@ def debian_package_build(suite, architecture, full_build=True, extra_repos=[], h
 					},
 				],
 				"commands" : [
+					"rm /etc/apt/sources.list.d/debian.sources",
+					"> /etc/apt/sources.list",
+					"echo 'deb https://snapshot.debian.org/archive/debian/20211215T111800Z/ bookworm main' > /etc/apt/sources.list.d/workaround.list",
 					"releng-build-package",
 					"find /drone -type f -maxdepth 1 -exec mv {} /buildd \\\;",
 				],
