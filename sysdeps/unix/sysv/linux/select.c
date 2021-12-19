@@ -77,7 +77,7 @@ __select64 (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
     {
       int r = SYSCALL_CANCEL (pselect6_time64, nfds, readfds, writefds,
 			      exceptfds, pts64, NULL);
-      if ((r >= 0 || errno != ENOSYS) && timeout != NULL)
+      if ((r >= 0 || ! (errno == ENOSYS || errno == EPERM)) && timeout != NULL)
 	{
 	  TIMESPEC_TO_TIMEVAL (timeout, &ts64);
 	}
