@@ -52,7 +52,7 @@ __clone_internal (struct clone_args *cl_args,
   /* Try clone3 first.  */
   int saved_errno = errno;
   ret = __clone3 (cl_args, sizeof (*cl_args), func, arg);
-  if (ret != -1 || errno != ENOSYS)
+  if (ret != -1 || ! (errno == ENOSYS || errno == EPERM))
     return ret;
 
   /* NB: Restore errno since errno may be checked against non-zero
