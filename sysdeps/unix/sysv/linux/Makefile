@@ -66,7 +66,7 @@ sysdep_routines += adjtimex clone umount umount2 readahead sysctl \
 		   fxstatat fxstatat64 \
 		   xmknod xmknodat convert_scm_timestamps \
 		   closefrom_fallback \
-		   clone3 clone-internal
+		   clone3 clone-internal close_range
 
 CFLAGS-gethostid.c = -fexceptions
 CFLAGS-tee.c = -fexceptions -fasynchronous-unwind-tables
